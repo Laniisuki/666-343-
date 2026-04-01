@@ -2,11 +2,11 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>S.O.S-666-333-</title>
+<title>666-343</title>
 <style>
 body {
   margin: 0;
-  background: radial-gradient(circle at center, #1a0000, #0a0a0a);
+  background: radial-gradient(circle at center, #2a0000, #0a0a0a);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,36 +22,22 @@ body {
   padding: 25px 30px 45px;
   box-shadow: 
     inset 0 0 40px #000,
-    0 0 80px rgba(0,0,0,0.95),
-    0 30px 60px rgba(150, 0, 0, 0.6);
+    0 0 90px rgba(80, 0, 0, 0.9),
+    0 40px 70px rgba(120, 0, 0, 0.7);
   position: relative;
-  border: 12px solid #111;
+  border: 14px solid #0f0f0f;
 }
 
 .tv::before {
   content: "";
   position: absolute;
-  top: -15px;
+  top: -18px;
   left: 50%;
   transform: translateX(-50%);
-  width: 120px;
-  height: 12px;
-  background: #222;
+  width: 130px;
+  height: 14px;
+  background: #1a1a1a;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.8);
-}
-
-/* Rachaduras e desgaste na TV */
-.tv::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: 
-    radial-gradient(circle at 30% 20%, rgba(255,255,255,0.03) 0%, transparent 50%),
-    linear-gradient(45deg, transparent 40%, rgba(255,0,0,0.02) 50%, transparent 60%);
-  pointer-events: none;
-  z-index: 3;
-  border-radius: 35px;
 }
 
 .screen {
@@ -61,11 +47,10 @@ body {
   border-radius: 8px;
   overflow: hidden;
   position: relative;
-  box-shadow: inset 0 0 60px #000;
-  animation: heavy-flicker 0.08s infinite alternate, shake-intense 0.4s infinite;
+  box-shadow: inset 0 0 70px #000;
+  animation: heavy-flicker 0.07s infinite alternate, shake-intense 0.35s infinite;
 }
 
-/* Scanlines fortes + static noise */
 .screen::before {
   content: "";
   position: absolute;
@@ -75,83 +60,64 @@ body {
       to bottom,
       transparent 0px,
       transparent 2px,
-      rgba(0, 255, 80, 0.08) 2px,
-      rgba(0, 255, 80, 0.08) 4px
-    ),
-    linear-gradient(
-      rgba(255,255,255,0.07) 50%,
-      transparent 50%
+      rgba(255, 30, 30, 0.09) 2px,
+      rgba(255, 30, 30, 0.09) 4px
     );
-  background-size: 100% 4px, 100% 3px;
+  background-size: 100% 4px;
   pointer-events: none;
   z-index: 2;
-  animation: static-noise 0.15s steps(5) infinite;
+  animation: static-noise 0.2s steps(4) infinite;
   mix-blend-mode: screen;
 }
 
-/* Camada de distorção VHS / tracking lines */
 .screen::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    transparent 40%,
-    rgba(255, 255, 255, 0.25) 42%,
-    transparent 44%
+    transparent 38%,
+    rgba(255, 255, 255, 0.3) 40%,
+    transparent 42%
   );
-  animation: vhs-tracking 1.2s linear infinite;
-  opacity: 0.6;
+  animation: vhs-tracking 1.4s linear infinite;
+  opacity: 0.65;
   z-index: 3;
   pointer-events: none;
 }
 
 @keyframes static-noise {
-  0% { opacity: 0.4; filter: brightness(1.1); }
-  50% { opacity: 0.7; filter: brightness(0.9); }
-  100% { opacity: 0.5; filter: brightness(1.05); }
+  0% { opacity: 0.45; }
+  50% { opacity: 0.75; }
+  100% { opacity: 0.5; }
 }
 
 @keyframes vhs-tracking {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(400%); }
+  0% { transform: translateY(-120%); }
+  100% { transform: translateY(450%); }
 }
 
 @keyframes heavy-flicker {
-  0% { opacity: 0.96; }
+  0% { opacity: 0.94; }
   100% { opacity: 1; }
 }
 
 @keyframes shake-intense {
   0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  10% { transform: translate(-3px, 2px) rotate(-0.5deg); }
-  20% { transform: translate(4px, -3px) rotate(0.8deg); }
-  30% { transform: translate(-5px, 1px) rotate(-1deg); }
-  40% { transform: translate(3px, -4px) rotate(0.6deg); }
-  50% { transform: translate(-2px, 3px) rotate(-0.7deg); }
-  60% { transform: translate(5px, -2px) rotate(1deg); }
-  70% { transform: translate(-4px, 2px) rotate(-0.4deg); }
-  80% { transform: translate(2px, -3px) rotate(0.5deg); }
-  90% { transform: translate(-3px, 1px) rotate(-0.6deg); }
+  15% { transform: translate(-4px, 3px) rotate(-1deg); }
+  30% { transform: translate(5px, -4px) rotate(1.2deg); }
+  45% { transform: translate(-6px, 2px) rotate(-0.8deg); }
+  60% { transform: translate(4px, -3px) rotate(0.9deg); }
+  75% { transform: translate(-3px, 4px) rotate(-1.1deg); }
+  90% { transform: translate(5px, -2px) rotate(0.6deg); }
 }
 
 iframe {
   width: 100%;
   height: 100%;
   border: none;
-  filter: contrast(1.15) saturate(1.3);
+  filter: contrast(1.2) saturate(1.4) brightness(0.95);
   pointer-events: none;
-}
-
-/* Glitch RGB split no iframe */
-.glitch-video {
-  animation: rgb-split 0.4s infinite alternate linear;
-}
-
-@keyframes rgb-split {
-  0% { filter: hue-rotate(0deg) saturate(1.4); }
-  33% { filter: hue-rotate(8deg) saturate(1.6); }
-  66% { filter: hue-rotate(-8deg) saturate(1.5); }
 }
 
 #finalText {
@@ -159,20 +125,21 @@ iframe {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #ff0044;
-  font-size: 58px;
+  color: #c80000;
+  font-size: 62px;
   font-family: 'Courier New', monospace;
-  font-weight: bold;
+  font-weight: 900;
   text-shadow: 
-    0 0 15px #ff0044,
-    0 0 30px #00ffcc,
-    4px 4px 0 #00ff9c,
-    -4px -4px 0 #ff00ff;
+    0 0 20px #ff0000,
+    0 0 40px #8b0000,
+    6px 6px 0 #330000,
+    -6px -6px 0 #330000;
   display: none;
   z-index: 10;
-  letter-spacing: 4px;
-  animation: final-glitch 0.1s infinite;
+  letter-spacing: 6px;
+  animation: final-red-glitch 0.12s infinite;
   pointer-events: none;
+  text-transform: uppercase;
 }
 
 .glitch {
@@ -187,40 +154,39 @@ iframe {
   top: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.8;
 }
 
 .glitch::before {
-  color: #00ffff;
-  animation: glitch-top 0.2s infinite linear alternate-reverse;
-  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+  color: #ff2222;
+  animation: glitch-top 0.18s infinite linear alternate-reverse;
+  clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  text-shadow: 0 0 15px #ff0000;
 }
 
 .glitch::after {
-  color: #ff00ff;
-  animation: glitch-bottom 0.25s infinite linear alternate-reverse;
-  clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+  color: #aa0000;
+  animation: glitch-bottom 0.22s infinite linear alternate-reverse;
+  clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  text-shadow: 0 0 15px #ff0000;
 }
 
 @keyframes glitch-top {
-  0% { transform: translate(-3px, -2px); }
-  20% { transform: translate(4px, 3px); }
-  40% { transform: translate(-5px, -1px); }
-  60% { transform: translate(2px, 4px); }
-  80% { transform: translate(-3px, -3px); }
+  0% { transform: translate(-4px, -3px); }
+  25% { transform: translate(5px, 4px); }
+  50% { transform: translate(-6px, -2px); }
+  75% { transform: translate(3px, 5px); }
 }
 
 @keyframes glitch-bottom {
-  0% { transform: translate(3px, 2px); }
-  20% { transform: translate(-4px, -3px); }
-  40% { transform: translate(5px, 1px); }
-  60% { transform: translate(-2px, -4px); }
-  80% { transform: translate(3px, 3px); }
+  0% { transform: translate(4px, 3px); }
+  25% { transform: translate(-5px, -4px); }
+  50% { transform: translate(6px, 2px); }
+  75% { transform: translate(-3px, -5px); }
 }
 
-@keyframes final-glitch {
+@keyframes final-red-glitch {
   0%, 100% { transform: translate(-50%, -50%) skew(0deg); }
-  50% { transform: translate(-50%, -52%) skew(8deg); }
+  50% { transform: translate(-50%, -53%) skew(7deg); }
 }
 </style>
 </head>
@@ -228,11 +194,11 @@ iframe {
 
 <div class="tv">
   <div class="screen" id="screen">
-<iframe id="yt" 
-  src="https://www.youtube.com/embed/xwpowWDr7UY?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1" 
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-  allowfullscreen>
-</iframe>
+    <iframe id="yt" 
+      src="https://www.youtube.com/embed/xwpowWDr7UY?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
     
     <div id="finalText" class="glitch" data-text="S.O.S ERROR 404">
       S.O.S ERROR 404
@@ -242,24 +208,19 @@ iframe {
 
 <script>
 const finalText = document.getElementById("finalText");
-const ytFrame = document.getElementById("yt");
 const screen = document.getElementById("screen");
-
-ytFrame.classList.add("glitch-video");
-
-const videoDuration = 56;
 
 setTimeout(() => {
   finalText.style.display = "block";
   
   setInterval(() => {
-    const rx = (Math.random() * 14 - 7);
-    const ry = (Math.random() * 14 - 7);
+    const rx = (Math.random() * 16 - 8);
+    const ry = (Math.random() * 16 - 8);
     finalText.style.transform = `translate(calc(-50% + ${rx}px), calc(-50% + ${ry}px))`;
-  }, 80);
+  }, 75);
 
-  screen.style.animation = "heavy-flicker 0.05s infinite alternate, shake-intense 0.25s infinite";
-}, videoDuration * 1000);
+  screen.style.animation = "heavy-flicker 0.05s infinite alternate, shake-intense 0.22s infinite";
+}, 56000); // 56 segundos
 </script>
 </body>
 </html>
