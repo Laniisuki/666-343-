@@ -2,64 +2,156 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>TV Realista</title>
-
+<title>S.O.S-666-333-</title>
 <style>
 body {
   margin: 0;
-  background: #0a0a0a;
+  background: radial-gradient(circle at center, #1a0000, #0a0a0a);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow: hidden;
 }
 
 .tv {
-  width: 700px;
-  height: 450px;
-  background: #2b2b2b;
-  border-radius: 25px;
-  padding: 20px;
-  box-shadow: inset 0 0 30px #000, 0 0 60px rgba(0,0,0,0.8);
+  width: 720px;
+  height: 480px;
+  background: linear-gradient(#3a3a3a, #1f1f1f);
+  border-radius: 35px;
+  padding: 25px 30px 45px;
+  box-shadow: 
+    inset 0 0 40px #000,
+    0 0 80px rgba(0,0,0,0.95),
+    0 30px 60px rgba(150, 0, 0, 0.6);
+  position: relative;
+  border: 12px solid #111;
+}
+
+.tv::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 12px;
+  background: #222;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+}
+
+/* Rachaduras e desgaste na TV */
+.tv::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,0.03) 0%, transparent 50%),
+    linear-gradient(45deg, transparent 40%, rgba(255,0,0,0.02) 50%, transparent 60%);
+  pointer-events: none;
+  z-index: 3;
+  border-radius: 35px;
 }
 
 .screen {
   width: 100%;
   height: 100%;
-  background: black;
-  border-radius: 10px;
+  background: #000;
+  border-radius: 8px;
   overflow: hidden;
   position: relative;
-  animation: shake 0.15s infinite;
+  box-shadow: inset 0 0 60px #000;
+  animation: heavy-flicker 0.08s infinite alternate, shake-intense 0.4s infinite;
+}
+
+/* Scanlines fortes + static noise */
+.screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      rgba(0, 255, 80, 0.08) 2px,
+      rgba(0, 255, 80, 0.08) 4px
+    ),
+    linear-gradient(
+      rgba(255,255,255,0.07) 50%,
+      transparent 50%
+    );
+  background-size: 100% 4px, 100% 3px;
+  pointer-events: none;
+  z-index: 2;
+  animation: static-noise 0.15s steps(5) infinite;
+  mix-blend-mode: screen;
+}
+
+/* Camada de distorção VHS / tracking lines */
+.screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    rgba(255, 255, 255, 0.25) 42%,
+    transparent 44%
+  );
+  animation: vhs-tracking 1.2s linear infinite;
+  opacity: 0.6;
+  z-index: 3;
+  pointer-events: none;
+}
+
+@keyframes static-noise {
+  0% { opacity: 0.4; filter: brightness(1.1); }
+  50% { opacity: 0.7; filter: brightness(0.9); }
+  100% { opacity: 0.5; filter: brightness(1.05); }
+}
+
+@keyframes vhs-tracking {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(400%); }
+}
+
+@keyframes heavy-flicker {
+  0% { opacity: 0.96; }
+  100% { opacity: 1; }
+}
+
+@keyframes shake-intense {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  10% { transform: translate(-3px, 2px) rotate(-0.5deg); }
+  20% { transform: translate(4px, -3px) rotate(0.8deg); }
+  30% { transform: translate(-5px, 1px) rotate(-1deg); }
+  40% { transform: translate(3px, -4px) rotate(0.6deg); }
+  50% { transform: translate(-2px, 3px) rotate(-0.7deg); }
+  60% { transform: translate(5px, -2px) rotate(1deg); }
+  70% { transform: translate(-4px, 2px) rotate(-0.4deg); }
+  80% { transform: translate(2px, -3px) rotate(0.5deg); }
+  90% { transform: translate(-3px, 1px) rotate(-0.6deg); }
 }
 
 iframe {
   width: 100%;
   height: 100%;
   border: none;
-  pointer-events: none; /* deixa parecer TV */
+  filter: contrast(1.15) saturate(1.3);
+  pointer-events: none;
 }
 
-.screen::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(255,255,255,0.06) 0px,
-    rgba(255,255,255,0.06) 2px,
-    transparent 2px,
-    transparent 4px
-  );
+/* Glitch RGB split no iframe */
+.glitch-video {
+  animation: rgb-split 0.4s infinite alternate linear;
 }
 
-.screen::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, transparent 60%, rgba(0,0,0,0.6));
+@keyframes rgb-split {
+  0% { filter: hue-rotate(0deg) saturate(1.4); }
+  33% { filter: hue-rotate(8deg) saturate(1.6); }
+  66% { filter: hue-rotate(-8deg) saturate(1.5); }
 }
 
 #finalText {
@@ -67,11 +159,24 @@ iframe {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #00ff9c;
-  font-size: 50px;
-  font-family: monospace;
+  color: #ff0044;
+  font-size: 58px;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  text-shadow: 
+    0 0 15px #ff0044,
+    0 0 30px #00ffcc,
+    4px 4px 0 #00ff9c,
+    -4px -4px 0 #ff00ff;
   display: none;
-  text-shadow: 0 0 10px #00ff9c;
+  z-index: 10;
+  letter-spacing: 4px;
+  animation: final-glitch 0.1s infinite;
+  pointer-events: none;
+}
+
+.glitch {
+  position: relative;
 }
 
 .glitch::before,
@@ -79,54 +184,81 @@ iframe {
   content: attr(data-text);
   position: absolute;
   left: 0;
+  top: 0;
   width: 100%;
+  height: 100%;
+  opacity: 0.8;
 }
 
-.glitch::before { top: -2px; color: red; }
-.glitch::after { top: 2px; color: blue; }
-
-@keyframes shake {
-  0% { transform: translate(0,0); }
-  25% { transform: translate(1px,-1px); }
-  50% { transform: translate(-1px,1px); }
-  75% { transform: translate(1px,1px); }
-  100% { transform: translate(0,0); }
+.glitch::before {
+  color: #00ffff;
+  animation: glitch-top 0.2s infinite linear alternate-reverse;
+  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
 }
 
+.glitch::after {
+  color: #ff00ff;
+  animation: glitch-bottom 0.25s infinite linear alternate-reverse;
+  clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+}
+
+@keyframes glitch-top {
+  0% { transform: translate(-3px, -2px); }
+  20% { transform: translate(4px, 3px); }
+  40% { transform: translate(-5px, -1px); }
+  60% { transform: translate(2px, 4px); }
+  80% { transform: translate(-3px, -3px); }
+}
+
+@keyframes glitch-bottom {
+  0% { transform: translate(3px, 2px); }
+  20% { transform: translate(-4px, -3px); }
+  40% { transform: translate(5px, 1px); }
+  60% { transform: translate(-2px, -4px); }
+  80% { transform: translate(3px, 3px); }
+}
+
+@keyframes final-glitch {
+  0%, 100% { transform: translate(-50%, -50%) skew(0deg); }
+  50% { transform: translate(-50%, -52%) skew(8deg); }
+}
 </style>
 </head>
-
 <body>
 
 <div class="tv">
-  <div class="screen">
-
-    <!-- YOUTUBE VIDEO -->
-    <iframe id="yt"
-      src="https://www.youtube.com/embed/xwpowWDr7UY?autoplay=1&controls=0&modestbranding=1&rel=0"
+  <div class="screen" id="screen">
+    <iframe id="yt" 
+      src="https://www.youtube.com/embed/xwpowWDr7UY?autoplay=1&controls=0&modestbranding=1&rel=0&mute=0" 
       allow="autoplay">
     </iframe>
-
-    <div id="finalText" class="glitch" data-text="S.O.S ERROR 404">S.O.S ERROR 404</div>
-
+    
+    <div id="finalText" class="glitch" data-text="S.O.S ERROR 404">
+      S.O.S ERROR 404
+    </div>
   </div>
 </div>
 
 <script>
 const finalText = document.getElementById("finalText");
+const ytFrame = document.getElementById("yt");
+const screen = document.getElementById("screen");
 
-// tempo do vídeo (segundos) → ajusta se quiser
+ytFrame.classList.add("glitch-video");
+
 const videoDuration = 56;
 
 setTimeout(() => {
   finalText.style.display = "block";
-
+  
   setInterval(() => {
-    finalText.style.transform = `translate(${Math.random()*10-5}px, ${Math.random()*10-5}px)`;
-  }, 100);
+    const rx = (Math.random() * 14 - 7);
+    const ry = (Math.random() * 14 - 7);
+    finalText.style.transform = `translate(calc(-50% + ${rx}px), calc(-50% + ${ry}px))`;
+  }, 80);
 
+  screen.style.animation = "heavy-flicker 0.05s infinite alternate, shake-intense 0.25s infinite";
 }, videoDuration * 1000);
 </script>
-
 </body>
 </html>
